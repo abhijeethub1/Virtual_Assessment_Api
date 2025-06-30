@@ -1,0 +1,28 @@
+prompts:
+  - "{{question}}"  # This is required by promptfoo, even if you don't use it directly
+
+providers:
+  - id: "api:local"
+    config:
+      url: "http://localhost:8000/api/"
+      method: POST
+      headers:
+        Content-Type: application/json
+      body: |
+        {
+          "question": "{{question}}",
+          "image": null
+        }
+
+tests:
+  - vars:
+      question: "Should I use gpt-4o-mini or gpt3.5 turbo for assignments?"
+      
+  - vars:
+      question: "What Python libraries should I learn for data visualization?"
+      
+  - vars:
+      question: "How do I install Jupyter notebooks?"
+      
+  - vars:
+      question: "What's the deadline for the next assignment?"
