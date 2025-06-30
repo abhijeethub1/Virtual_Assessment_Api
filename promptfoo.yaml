@@ -1,0 +1,32 @@
+prompts: ["{{question}}"]
+
+providers:
+  - id: "rest:api"
+    config:
+      url: "http://localhost:8000/api/"
+      method: POST
+      headers:
+        Content-Type: application/json
+      body:
+        text: '{"question":"{{question}}","image":null}'
+
+tests:
+  - vars:
+      question: "How to create a Pandas DataFrame?"
+    assert:
+      - type: contains
+        value: "pandas"
+      - type: contains
+        value: "DataFrame"
+
+  - vars:
+      question: "What visualization library is taught?"
+    assert:
+      - type: contains
+        value: "Matplotlib"
+
+  - vars:
+      question: "I'm feeling depressed"
+    assert:
+      - type: contains
+        value: "student support"
